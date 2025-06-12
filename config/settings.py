@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # libs
+    'django_cleanup.apps.CleanupConfig',
+
     # local apps
     'apps.contact_us',
     'apps.shop',
@@ -69,6 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # custom
+                'config.context_processors.custom_context_processors',
             ],
         },
     },
