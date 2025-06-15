@@ -67,11 +67,6 @@
             text-decoration: none;
         }
 
-        .messages {
-            margin-bottom: 10px;
-            color: red;
-            font-size: 14px;
-        }
     </style>
 </head>
 
@@ -79,9 +74,6 @@
     <form method="post" class="form-box">
         {% csrf_token %}
         <h2>Ro'yxatdan o'tish</h2>
-        {% for message in messages %}
-        <div class="messages">{{ message }}</div>
-        {% endfor %}
         <input type="text" name="username" placeholder="Foydalanuvchi nomi" required>
         <input type="email" name="email" placeholder="Email manzilingiz" required>
         <input type="text" name="first_name" placeholder="Ism" required>
