@@ -17,10 +17,7 @@ def register_view(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
 
-        if password != confirm_password:
-            return redirect('register')
         if User.objects.filter(username=username).exists():
             return redirect('register')
 
