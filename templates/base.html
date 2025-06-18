@@ -44,9 +44,9 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="#" class="btn border">
+                <a href="{% url 'cart' %}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">{{ cart_items_count }}</span>
                 </a>
             </div>
         </div>
@@ -84,8 +84,8 @@
                             <a href="/" class="nav-item nav-link active">Home</a>
                             <a href="{% url 'shop' %}" class="nav-item nav-link">Shop</a>
                             <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
-                            <a href="cart.html" class="nav-item nav-link">Cart</a>
-                            <a href="checkout.html" class="nav-item nav-link">Checkout</a>
+                            <a href="/cart/" class="nav-item nav-link">Cart</a>
+                            <a href="{% url 'checkout' %}" class="nav-item nav-link">Checkout</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             {% if request.user.is_authenticated %}
@@ -121,9 +121,9 @@
                             <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-dark mb-2" href="{% url 'shop' %}"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping
+                            <a class="text-dark mb-2" href="/cart/"><i class="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
-                            <a class="text-dark mb-2" href="checkout.html"><i
+                            <a class="text-dark mb-2" href="{% url 'checkout' %}"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-dark" href="/contact/"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
