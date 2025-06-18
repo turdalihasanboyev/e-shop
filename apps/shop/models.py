@@ -63,12 +63,13 @@ class Product(models.Model):
         return round(average, 2) if average else 0
 
     def save(self, *args, **kwargs):
-        uuid_slug = uuid.uuid4()
-        self.slug = f"{uuid_slug}"
+        if not self.slug:
+            uuid_slug = uuid.uuid4()
+            self.slug = f"{uuid_slug}"
         super().save(*args, **kwargs)
 
     def get_absolute_url(self, *args, **kwargs):
-        return reverse('product_detail', kwargs={'slug': self.slug})
+        return reverse('product_detail', kwargs={'product_slug': self.slug})
 
     class Meta:
         verbose_name = "Product"

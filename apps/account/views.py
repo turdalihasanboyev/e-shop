@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 
+from apps.shop.models import Product
+
 
 @login_required
 def logout_view(request):
@@ -42,4 +44,17 @@ def login_view(request):
     return render(request, 'login.html')
 
 def home_view(request):
-    return render(request, 'index.html')
+    q = request.GET.get('q')
+
+    products = Product.objects.all()
+    trandy_products = products.order_by('-views')
+
+    if q:
+        products = products.filter(name__icontains=q)
+
+    context = {
+        'trandy_products': trandy_products,
+        'products': products,
+    }
+
+    return render(request, 'index.html', context)
