@@ -14,13 +14,13 @@ def shop_view(request):
     return render(request, 'shop.html', {'products': products})
 
 def product_detail_view(request, product_slug):
-    product = Product.objects.get(slug=product_slug)
+    product = Product.objects.get(slug__exact=product_slug)
 
     product.views += 1
     product.save()
 
-    reviews = Review.objects.filter(product=product).order_by('-id')
-    related_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)
+    reviews = Review.objects.filter(product__slug__iexact=product_slug).order_by('-id')
+    related_products = Product.objects.filter(category__slug__iexact=product.category.slug).exclude(pk=product.pk)
 
     if not request.user.is_authenticated:
         return redirect('login')
